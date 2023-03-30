@@ -4,7 +4,7 @@
 HOSTNAME_=$(hostname)
 TIMEZONE_=$(date +"%Z UTC %z")
 USER_=$(whoami)
-OS_=$(uname -sv)
+OS_=$(awk '{print $1, $2, $3}' < /etc/issue | tr -d ' \n')
 DATE_=$(date +"%d %b %Y %H:%M:%S")
 UPTIME_=$(uptime -p)
 UPTIME_SEC_=$(awk '{print $1}' < /proc/uptime)
