@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 
+### The section with colours to set in the output text
+
 DEFAULT_COLOUR='\033[0m'
 
 # background colours

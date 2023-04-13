@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# shellcheck source=./statician.sh
-source ./statician.sh
+
+# shellcheck source=/dev/null
+source ./statistician.sh
 
 
 function are_valid_args()

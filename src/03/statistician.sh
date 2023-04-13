@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# shellcheck source=./colours.sh
+# shellcheck source=/dev/null
 source ./colours.sh
 
 
@@ -22,8 +22,8 @@ SPACE_ROOT_=$(df /root/ | awk '/\/$/ {printf "%.2f MB", $2/1024}')
 SPACE_ROOT_USED_=$(df /root/ | awk '/\/$/ {printf "%.2f MB", $3/1024}')
 SPACE_ROOT_FREE_=$(df /root/ | awk '/\/$/ {printf "%.2f MB", $4/1024}')
 
-# https://stackoverflow.com/questions/5412761/using-colors-with-printf
 
+# https://stackoverflow.com/questions/5412761/using-colors-with-printf
 function print_colourised_stats
 {
     bg_name=$(get_bg "$1")
