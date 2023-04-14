@@ -65,7 +65,7 @@ function print_used_colour_scheme()
     printf "Column 2 font colour = %s\n" "$ctype"
 }
 
-### The section with colours to set in the output text
+### The section with colours for the output text
 
 DEFAULT_COLOUR='\033[0m'
 

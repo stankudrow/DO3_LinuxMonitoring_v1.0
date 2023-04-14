@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 
+# bash main.sh <arg>
+
 # shellcheck source=/dev/null
 source ./statistician.sh
 

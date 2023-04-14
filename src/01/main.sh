@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
 
+# bash main.sh <arg>
+
+
 if [ $# -ne 1 ]
 then
-    printf "A single argument required."
+    printf "A single argument is required."
 else
-    numpat="^[+-]?([0-9]+|([0-9]*\.([0-9]+([eE][+-]?[0-9]+)?)?))$"
+    numpat="^[+-]?([0-9]+|([0-9]*\.([0-9]*([eE][+-]?[0-9]+)?)?))$"
     if [[ $1 =~ $numpat ]]
     then
-        printf "%s is number-like." "$1"
+        printf "%s is a number." "$1"
     else
         printf "%s" "$1"
     fi

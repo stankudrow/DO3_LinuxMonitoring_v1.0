@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 
+# bash main.sh
+# The script will read the contents of the ./config.conf file.
+# At least one colour for the name/parametre section must be specified.
+# At least one colour for the values of the names/parametres section must be specified.
+# The code for colours must be integer numbers inclusively from 1 to 6.
+
+
 # shellcheck source=/dev/null
 source ./statistician.sh
 

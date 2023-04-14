@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 
+# A recommended way is to run the script as `sudo bash main.sh <dirpath>`.
+# The dirpath must end with a slash (it is the requirement from the task).
+
+
 # shellcheck source=/dev/null
 source ./statistics.sh
-
-
-# Consider running the script as follows: `sudo bash main <dirpath>`
-# Executing the script with `sudo` privileges is a recommended way.
 
 
 function check_args()
@@ -20,6 +20,10 @@ function check_args()
         then
             printf 'Error: "%s" does not exist.\n' "$1"
             exit 2
+        fi
+        if [[ "${1: -1}" != "/" ]]; then
+            printf "%s does not end with a slash (/) character.\n" "$1"
+            exit 3
         fi
     fi
 }

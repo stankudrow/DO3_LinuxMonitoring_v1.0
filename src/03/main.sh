@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 
+# bash main.sh <name_bg> <name_fg> <value_bg> <value_fg>
+# The arguments are integer numbers inclusively from 1 to 6.
+
+
 # shellcheck source=/dev/null
 source ./statistician.sh
 
