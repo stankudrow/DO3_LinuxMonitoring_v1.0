@@ -16,15 +16,10 @@ function check_args()
         printf "Error: the script needs the path to the directory.\n"
         exit 1
     else
-        if [ ! -a "$1" ]
+        if [ ! -d "$1" ]
         then
             printf 'Error: "%s" does not exist.\n' "$1"
             exit 2
-        fi
-        if [ ! -d "$1" ]
-        then
-            printf 'Error: "%s" is not a directory.\n' "$1"
-            exit 3
         fi
     fi
 }
