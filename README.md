@@ -5,15 +5,24 @@ Linux basic bash scripting and system research.
 ## Contents
 
 1. [Chapter I](#chapter-i)
-2. [Chapter II](#chapter-ii) \
-    2.1. [Bash](#bash) \
+
+2. [Chapter II](#chapter-ii)
+
+    2.1. [Bash](#bash)
+
     2.2. [Shell](#shell)
+
 3. [Chapter III](#chapter-iii) \
-    3.1. [First effort](#part-1-first-effort)  
-    3.2. [System research](#part-2-system-research)  
+    3.1. [First effort](#part-1-first-effort)
+
+    3.2. [System research](#part-2-system-research)
+
     3.3. [Visual output design for the system research script](#part-3-visual-output-design-for-the-system-research-script)
-    3.4. [Configuring visual output design for the system research script.](#part-4-configuring-visual-output-design-for-the-system-research-script)  
+
+    3.4. [Configuring visual output design for the system research script.](#part-4-configuring-visual-output-design-for-the-system-research-script)
+
     3.5. [File system research](#part-5-file-system-research)
+
 4. [Chapter IV](#chapter-iv)
 
 ## Chapter I
