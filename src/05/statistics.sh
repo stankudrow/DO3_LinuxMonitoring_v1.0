@@ -40,7 +40,7 @@ function print_statistics()
     log_files_count="$(find "$dirpath" -type f -name "*.log" | wc -l)"
     printf "Log files (with the extension .log) = %d\n" "$log_files_count"
 
-    arch_files_count="$(find "$dirpath" -type f -exec sh -c 'file -zb {} | grep "archive\|compress*"' \; | wc -l)"
+    arch_files_count="$(find "$dirpath" -type f -exec sh -c 'file -zb "$1" | grep "archive\|compress*"' sh {} \; | wc -l)"
     printf "Archive files = %d\n" "$arch_files_count"
 
     symlink_files_count="$(find "$dirpath" -type l | wc -l)"
@@ -49,7 +49,7 @@ function print_statistics()
     top10_files=$(find "$dirpath" -type f -exec du -hs {} + | sort -hr -k 1 | head -n 10 | awk 'BEGIN{i=1}{idx=split($2, a, "."); printf "%d - %s, %s, %s\n", i, $2, $1, a[idx]; i++}')
     printf "TOP 10 files of maximum size arranged in descending order (path, size and type):\n%s\n" "$top10_files"
 
-    top10_execs=$(find "$dirpath" -type f -executable -exec du -hs {} + | sort -hr -k 1 | head -n 10 | awk 'BEGIN{i=1}{printf "%d - %s, %s, %s\n", i, $2, $1, system("md5sum $2 | cut -d ' ' -f 1}"); i++}')
+    top10_execs=$(find "$dirpath" -type f -executable -exec du -hs {} + | sort -hr -k 1 | head -n 10 | awk 'BEGIN{i=1}{"md5sum " $2 | getline m5s; close("md5sum"); idx=split(m5s, a, " "); printf "%d - %s, %s, %s\n", i, $2, $1, a[1]; i++}')
     printf "TOP 10 executable files of the maximum size arranged in descending order (path, size and MD5 hash of file):\n%s\n" "$top10_execs"
 
     # time for the total time of being run
