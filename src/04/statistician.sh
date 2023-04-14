@@ -6,14 +6,17 @@ source ./colours.sh
 
 
 HOSTNAME_=$(hostname)
-TIMEZONE_=$(date +"%Z UTC %z")
+#TIMEZONE_=$(date +"%Z UTC %z")
+TIMEZONE_=$(printf "%s UTC %s" "$(cat /etc/timezone)" "$(date +"%z")")
 USER_=$(whoami)
-OS_=$(awk '{print $1, $2, $3}' < /etc/issue | tr -d ' \n')
+OS_=$(awk -F' ' '{print $1, $2, $3}' < /etc/issue | xargs)  # xargs trims
 DATE_=$(date +"%d %b %Y %H:%M:%S")
 UPTIME_=$(uptime -p)
 UPTIME_SEC_=$(awk '{print $1}' < /proc/uptime)
-IPs_=$(ip address | grep "inet\b" | awk '{print $2}' | tr '\n' ';')
-MASKs_=$(ifconfig | grep "inet\b" | awk -F' ' '{print $1, $2, $3, $4}' | tr '\n' ';')
+#IPs_=$(ip address | grep "inet\b" | awk '{print $2}' | tr '\n' ';')
+IP_=$(hostname -I)
+#MASKs_=$(ifconfig | grep "inet\b" | awk -F' ' '{print $1, $2, $3, $4}' | tr '\n' ';')
+MASK_=$(ifconfig | grep "$IP_" | awk '{print $4}')
 GATEWAY_=$(ip route | grep "default" | awk '{print $3}')
 RAM_TOTAL_=$(free -m | awk '/Mem:/{printf "%.3f GB", $2/1024}')
 RAM_USED_=$(free -m | awk '/Mem:/{printf "%.3f GB", $3/1024}')
@@ -40,8 +43,8 @@ function print_colourised_stats
     printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "DATE" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$DATE_" "$bg_def" "$fg_def"
     printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "UPTIME" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$UPTIME_" "$bg_def" "$fg_def"
     printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "UPTIME_SEC" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$UPTIME_SEC_" "$bg_def" "$fg_def"
-    printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "IP[s]" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$IPs_" "$bg_def" "$fg_def"
-    printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "MASK[s]" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$MASKs_" "$bg_def" "$fg_def"
+    printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "IP[s]" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$IP_" "$bg_def" "$fg_def"
+    printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "MASK[s]" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$MASK_" "$bg_def" "$fg_def"
     printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "GATEWAY" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$GATEWAY_" "$bg_def" "$fg_def"
     printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "RAM_TOTAL" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$RAM_TOTAL_" "$bg_def" "$fg_def"
     printf "%b%b%s%b%b = %b%b%s%b%b\n" "$bg_name" "$fg_name" "RAM_USED" "$bg_def" "$fg_def" "$bg_value" "$fg_value" "$RAM_USED_" "$bg_def" "$fg_def"

@@ -5,7 +5,7 @@
 source ./statistics.sh
 
 
-# Run the script as follows: `sudo bash main <dirpath>`
+# Consider running the script as follows: `sudo bash main <dirpath>`
 # Executing the script with `sudo` privileges is a recommended way.
 
 

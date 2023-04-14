@@ -16,11 +16,7 @@ function main()
             file_name=$(date +"%d_%m_%y_%H_%M_%S")
             print_stats > "${file_name}.status"
         else
-            read -r -p "Into a standard input? [yY] " save_to_stdin
-            if [[ $save_to_stdin =~ ^[Yy]$ ]];
-            then
-                print_stats
-            fi
+            print_stats
         fi
     fi
 }

@@ -2,14 +2,17 @@
 
 
 HOSTNAME_=$(hostname)
-TIMEZONE_=$(date +"%Z UTC %z")
+#TIMEZONE_=$(date +"%Z UTC %z")
+TIMEZONE_=$(printf "%s UTC %s" "$(cat /etc/timezone)" "$(date +"%z")")
 USER_=$(whoami)
-OS_=$(awk '{print $1, $2, $3}' < /etc/issue | tr -d ' \n')
+OS_=$(awk -F' ' '{print $1, $2, $3}' < /etc/issue | xargs)  # xargs trims
 DATE_=$(date +"%d %b %Y %H:%M:%S")
 UPTIME_=$(uptime -p)
 UPTIME_SEC_=$(awk '{print $1}' < /proc/uptime)
-IPs_=$(ip address | grep "inet\b" | awk '{print $2}' | tr '\n' ';')
-MASKs_=$(ifconfig | grep "inet\b" | awk -F' ' '{print $1, $2, $3, $4}' | tr '\n' ';')
+#IPs_=$(ip address | grep "inet\b" | awk '{print $2}' | tr '\n' ';')
+IP_=$(hostname -I)
+#MASKs_=$(ifconfig | grep "inet\b" | awk -F' ' '{print $1, $2, $3, $4}' | tr '\n' ';')
+MASK_=$(ifconfig | grep "$IP_" | awk '{print $4}')
 GATEWAY_=$(ip route | grep "default" | awk '{print $3}')
 RAM_TOTAL_=$(free -m | awk '/Mem:/{printf "%.3f GB", $2/1024}')
 RAM_USED_=$(free -m | awk '/Mem:/{printf "%.3f GB", $3/1024}')
@@ -28,8 +31,8 @@ function print_stats
     printf "DATE = %s\n" "$DATE_"
     printf "UPTIME = %s\n" "$UPTIME_"
     printf "UPTIME_SEC = %s\n" "$UPTIME_SEC_"
-    printf "IP[s] = %s\n" "$IPs_"
-    printf "MASK[s] = %s\n" "$MASKs_"
+    printf "IP[s] = %s\n" "$IP_"
+    printf "MASK[s] = %s\n" "$MASK_"
     printf "GATEWAY = %s\n" "$GATEWAY_"
     printf "RAM_TOTAL = %s\n" "$RAM_TOTAL_"
     printf "RAM_USED = %s\n" "$RAM_USED_"

@@ -28,7 +28,7 @@ function are_valid_args()
         else
             reason="the same"
         fi
-        printf "The colours for the names are %s.\n" "$reason"
+        printf "The colours for the parametres are %s.\n" "$reason"
         exit 2
     fi
     if [[ "${colour_scheme[2]}" -eq "${colour_scheme[3]}" ]];
@@ -39,7 +39,7 @@ function are_valid_args()
         else
             reason="the same"
         fi
-        printf "The colours for the values are %s.\n" "$reason"
+        printf "The colours for the values of the parametres are %s.\n" "$reason"
         exit 3
     fi
 }
@@ -82,10 +82,6 @@ function main()
 {
     are_valid_args "$@"
     customise_colour_scheme
-    for i in {0..3}
-    do
-        echo "${colour_scheme[$i]}"
-    done
     print_colourised_stats "${colour_scheme[0]}" "${colour_scheme[1]}" "${colour_scheme[2]}" "${colour_scheme[3]}"
     print_used_colour_scheme
 }

@@ -9,7 +9,7 @@ function are_valid_args()
 {
     if (( $# != 4 ));
     then
-        printf "Invalid number of arguments.\n"
+        printf "The script expects 4 integer colour codes.\n"
         exit 1
     fi
     for arg in "$@"
@@ -22,12 +22,12 @@ function are_valid_args()
     done
     if [[ $1 -eq $2 ]];
     then
-        printf "The colours for the names are the same.\n"
+        printf "The colours for the parametres are the same.\n"
         exit 3
     fi
     if [[ $3 -eq $4 ]];
     then
-        printf "The colours for the values are the same.\n"
+        printf "The colours for the values of the parametres are the same.\n"
         exit 4
     fi
 }
