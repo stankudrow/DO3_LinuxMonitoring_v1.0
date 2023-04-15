@@ -5,7 +5,8 @@
 source ./config.conf
 
 
-default_colour_scheme=(1 6 1 6)
+default_colour_scheme=(1 2 4 2)
+
 
 # the codes come from the ./config.conf file
 colour_scheme=(
@@ -14,12 +15,6 @@ colour_scheme=(
     "$column2_background"
     "$column2_font_color"
 )
-
-
-function get_random_colour_code()
-{
-    printf "%d" $(( 1 + "$RANDOM" % 6 ))
-}
 
 
 function get_colour_name()
@@ -37,9 +32,9 @@ function get_colour_name()
 
 function get_colour_type()
 {
-    # colour name
+    # a colour name
     cname=$(get_colour_name "$1")
-    # default colour name
+    # a default colour name
     dcname=$(get_colour_name "${default_colour_scheme[$2]}")
     if [[ "$cname" == "$dcname" ]]
     then

@@ -9,8 +9,7 @@ if [ $# -ne 1 ]
 then
     printf "A single argument is required."
 else
-    # this pattern is likely to be non-complete
-    decimal="^[[:space:]]*[+-]?([0-9]+|[0-9]+\.[0-9]*|[0-9]*\.[0-9]+|[0]*[1-9]\.[0-9]*[eE][+-]?[0-9]+)[[:space:]]*$"
+    decimal="^\s*[+-]?[0]*([0-9]+|[0-9]+\.[0-9]*|[0-9]*\.[0-9]+|[1-9]\.[0-9]*[eE][+-]?[0-9]+)\s*$"
     if [[ "$1" =~ $decimal ]]
     then
         printf "Error: %s is a number." "$1"
