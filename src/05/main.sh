@@ -18,11 +18,11 @@ function check_args()
     else
         if [ ! -d "$1" ]
         then
-            printf 'Error: "%s" does not exist.\n' "$1"
+            printf 'Error: the directory "%s" does not exist.\n' "$1"
             exit 2
         fi
         if [[ "${1: -1}" != "/" ]]; then
-            printf "%s does not end with a slash (/) character.\n" "$1"
+            printf 'The directory "%s" does not end with a slash (/) character.\n' "$1"
             exit 3
         fi
     fi

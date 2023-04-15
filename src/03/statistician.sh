@@ -6,16 +6,13 @@ source ./colours.sh
 
 
 HOSTNAME_=$(hostname)
-#TIMEZONE_=$(date +"%Z UTC %z")
 TIMEZONE_=$(printf "%s UTC %s" "$(cat /etc/timezone)" "$(date +"%z")")
 USER_=$(whoami)
 OS_=$(awk -F' ' '{print $1, $2, $3}' < /etc/issue | xargs)  # xargs trims
 DATE_=$(date +"%d %b %Y %H:%M:%S")
 UPTIME_=$(uptime -p)
 UPTIME_SEC_=$(awk '{print $1}' < /proc/uptime)
-#IPs_=$(ip address | grep "inet\b" | awk '{print $2}' | tr '\n' ';')
 IP_=$(hostname -I)
-#MASKs_=$(ifconfig | grep "inet\b" | awk -F' ' '{print $1, $2, $3, $4}' | tr '\n' ';')
 MASK_=$(ifconfig | grep "$IP_" | awk '{print $4}')
 GATEWAY_=$(ip route | grep "default" | awk '{print $3}')
 RAM_TOTAL_=$(free -m | awk '/Mem:/{printf "%.3f GB", $2/1024}')

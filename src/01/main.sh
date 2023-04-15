@@ -7,7 +7,8 @@
 
 if [ $# -ne 1 ]
 then
-    printf "A single argument is required."
+    printf "A single argument is required.\n"
+    exit 1
 else
     decimal="^\s*[+-]?[0]*([0-9]+|[0-9]+\.[0-9]*|[0-9]*\.[0-9]+|[1-9]\.[0-9]*[eE][+-]?[0-9]+)\s*$"
     if [[ "$1" =~ $decimal ]]
