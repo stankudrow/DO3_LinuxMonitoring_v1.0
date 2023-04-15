@@ -9,17 +9,13 @@ source ./statistician.sh
 
 function main()
 {
+    result=$(print_stats)
+    printf "%s\n" "$result"
     read -r -p "Saving data? [yY] " to_save
     if [[ $to_save =~ ^\s*[Yy]\s*$ ]];
     then
-        read -r -p "Into a file? [yY] " save_to_file
-        if [[ $save_to_file =~ ^\s*[Yy]\s*$ ]];
-        then
-            file_name=$(date +"%d_%m_%y_%H_%M_%S")
-            print_stats > "${file_name}.status"
-        else
-            print_stats
-        fi
+        file_name=$(date +"%d_%m_%y_%H_%M_%S")
+        printf "%s" "$result" > "${file_name}.status"
     fi
 }
 

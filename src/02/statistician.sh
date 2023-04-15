@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 
+# `sudo apt install net-tools` for the ifconfig command
+
+
 # Artifacts
 #TIMEZONE_=$(date +"%Z UTC %z")
 #IPs_=$(ip address | grep "inet\b" | awk '{print $2}' | tr '\n' ';')
@@ -14,7 +17,7 @@ OS_=$(awk -F' ' '{print $1, $2, $3}' < /etc/issue | xargs)  # xargs trims
 DATE_=$(date +"%d %b %Y %H:%M:%S")
 UPTIME_=$(uptime -p)
 UPTIME_SEC_=$(awk '{print $1}' < /proc/uptime)
-IP_=$(hostname -I)
+IP_=$(hostname -I | awk '{print $1}')  # there may be several IPs
 MASK_=$(ifconfig | grep "$IP_" | awk '{print $4}')
 GATEWAY_=$(ip route | grep "default" | awk '{print $3}')
 RAM_TOTAL_=$(free -m | awk '/Mem:/{printf "%.3f GB", $2/1024}')

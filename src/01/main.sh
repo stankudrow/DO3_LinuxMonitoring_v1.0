@@ -5,18 +5,23 @@
 # Where the argument is in the decimal number system.
 
 
-if [ $# -ne 1 ]
-then
-    printf "A single argument is required.\n"
-    exit 1
-else
-    decimal="^\s*[+-]?[0]*([0-9]+|[0-9]+\.[0-9]*|[0-9]*\.[0-9]+|[1-9]\.[0-9]*[eE][+-]?[0-9]+)\s*$"
-    if [[ "$1" =~ $decimal ]]
+function main()
+{
+    if [ $# -ne 1 ]
     then
-        printf "Error: %s is a number." "$1"
+        printf "A single argument is required.\n"
+        exit 1
     else
-        printf "%s" "$1"
+        decimal="^\s*[+-]?[0]*([0-9]+|[0-9]+\.[0-9]*|[0-9]*\.[0-9]+|[1-9]\.[0-9]*[eE][+-]?[0-9]+)\s*$"
+        if [[ "$1" =~ $decimal ]]
+        then
+            printf "Error: %s is a number." "$1"
+        else
+            printf "%s" "$1"
+        fi
     fi
-fi
+    printf "\n"
+}
 
-printf "\n"
+
+main "$@"
