@@ -12,7 +12,8 @@ Linux basic bash scripting and system research.
 
     2.2. [Shell](#shell)
 
-3. [Chapter III](#chapter-iii) \
+3. [Chapter III](#chapter-iii)
+
     3.1. [First effort](#part-1-first-effort)
 
     3.2. [System research](#part-2-system-research)
