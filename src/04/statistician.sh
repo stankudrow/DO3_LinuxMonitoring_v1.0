@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 
-# `sudo apt install net-tools` for the ifconfig command
-
-
 # shellcheck source=/dev/null
 source ./colours.sh
+
+
+# `sudo apt install ipcalc` - a replacement for `ifconfig` solution
 
 
 HOSTNAME_=$(hostname)
@@ -16,7 +16,7 @@ DATE_=$(date +"%d %b %Y %H:%M:%S")
 UPTIME_=$(uptime -p)
 UPTIME_SEC_=$(awk '{print $1}' < /proc/uptime)
 IP_=$(hostname -I | awk '{print $1}')  # there may be several IPs
-MASK_=$(ifconfig | grep "$IP_" | awk '{print $4}')
+MASK_=$(ip address | ipcalc "$IP_" | grep "^Netmask" | awk '{print $2}')
 GATEWAY_=$(ip route | grep "default" | awk '{print $3}')
 RAM_TOTAL_=$(free -m | awk '/Mem:/{printf "%.3f GB", $2/1024}')
 RAM_USED_=$(free -m | awk '/Mem:/{printf "%.3f GB", $3/1024}')
